@@ -1,0 +1,16 @@
+extend ./header
+block content
+  h1= title
+  | 内容追加
+  p Welcome to #{title}
+
+  h2 定义变量
+    - var user = { description: '我喜欢猫' }
+    - if (user.description)
+        h3 描述
+        p.description= user.description
+    - else
+        h3 描述
+        p.description 用户无描述
+
+  <p>直接写HTML代码</p>
