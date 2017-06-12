@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "s1": "supervisor -w app app/websocket/server.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,9 @@
     "ejs": "^2.4.2",
     "express": "^4.13.4",
     "jade": "^1.11.0"
+  },
+  "dependencies": {
+    "winston": "2.3.1",
+    "ws": "3.0.0"
   }
 }
