@@ -2,17 +2,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="description" content="" />
-<meta name="keywords" content="" />
+<script src="client.js"></script>
 <title></title>
+
 </head>
 <body>
 
-<b>Client</b>
-<button>start</button>
-<button>pause</button>
-<button>close</button>
+<b>Websocket</b>
+<p>
+<button onclick="wssend('world')">send</button>
+<button onclick="wspolling()">polling</button>
+<button onclick="wspause()">pause</button>
+<button onclick="wsclose()">close</button>
+</p>
+<p>
+<textarea id="j_log" style="width:200px;height:200px;">
 
-<script src="client.js"></script>
+</textarea>
+</p>
+
 </body>
 </html>

@@ -1,6 +1,6 @@
-var http = require("http");
+const http = require("http");
 
-var Se1=function(req,res){
+let Se1=function(req,res){
 	res.writeHead(200,{'Content-Type':'text/plain'});
 	console.log(req.headers.hosts); // 127.0.0.1:3000
 	console.log(req);
@@ -8,6 +8,6 @@ var Se1=function(req,res){
 	res.end("hello world\n");
 };
 
-var port=3000;
+let port=3000;
 http.createServer(Se1).listen(port,"127.0.0.1");
 console.log('running at 127.0.0.1:'+port);

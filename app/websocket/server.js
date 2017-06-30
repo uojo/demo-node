@@ -2,8 +2,9 @@ var path = require('path');
 var express = require('express');
 var app = express();
 var ejs = require('ejs');
+// require('./t1')
+// require('./log')
 
-var port=3000;
 // set
 app.set('views', path.join(__dirname, './'));
 app.engine(".html", ejs.__express);
@@ -33,14 +34,41 @@ app.get( "/c", function (req, res) {
 
 app.get( "/ws", function (req, res) {
 	
-
 });
 
-var pa1 = path.join(__dirname, 'views');
 
-var ser = app.listen(port);
+var port=3000;
+var bs = require('browser-sync').create();
+var ser = app.listen(port-1,function(){
+	bs.init({
+		open: false,
+		ui: false,
+		notify: false,
+		logLevel:"silent",
+		proxy: 'localhost:'+ (port-1),
+		files: [
+			{
+				match:['./**'],
+				fn:function(e, e_path){
+					// 显示变更的行为，文件路径
+					if( e=="change" ){
+						// console.log( 0, e_path )
+						// console.log( 8 );
+						bs.reload();
+						
+					}else{
+						
+						
+					}
+					
+				}
+			}
+		],
+		port: port
+	})
+});
 
+// 初始 websocket
 require('./ws').listen(ser)
-// console.log(pa1);
 // console.log("ser",ser);
 // console.log("locals",app.locals);

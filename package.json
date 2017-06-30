@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "s1": "supervisor -w app app/websocket/server.js"
+    "websocket": "supervisor -w app/ app/websocket/server.js",
+    "streamjs": "supervisor -n exit -w app/ -x node app/streamjs/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,11 +22,17 @@
   },
   "homepage": "",
   "devDependencies": {
+    "chalk": "2.0.1",
+    "chokidar-cli": "1.2.0",
+    "colors": "1.1.2",
     "ejs": "^2.4.2",
     "express": "^4.13.4",
     "jade": "^1.11.0"
   },
   "dependencies": {
+    "browser-sync": "2.18.12",
+    "co": "4.6.0",
+    "streamjs": "1.6.4",
     "winston": "2.3.1",
     "ws": "3.0.0"
   }

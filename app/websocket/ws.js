@@ -14,18 +14,19 @@ exports.listen = function(server){
 	
 	wsSer.on('connection',(ws)=>{
 		ws.on('close', () => {
-			console.log('WebSocket.close: %s', 0);
+			console.log('WebSocket closed');
 		});
 		
 		ws.on('error', (err) => {
-			console.log('WebSocket.error: %s', err);
+			console.log('WebSocket error: %s', err);
 		});
 		
 		ws.on('message', (data) => {
-			console.log('WebSocket message received from client with data: %s', data);
+			console.log('WebSocket message received : %s', JSON.parse(data));
+			ws.send(data);
+			
 		});
 		
-		ws.send("server.message")
 	})
 	
 	return wsSer;
