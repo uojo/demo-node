@@ -1,6 +1,8 @@
 const co = require('co')
 const {elog,clog,log} = utils = require('../utils')
+const lodash=require('lodash')
 const Stream=require('streamjs')
+const omit=require('object.omit')
 // https://github.com/winterbe/streamjs/blob/master/APIDOC.md
 // console.log(log)
 
@@ -40,8 +42,7 @@ const da1=[
   }}
 ]
 
-log('blue',
-Stream(da1)
+let r0 = Stream(da1)
 .filter({a:1})
 // .flatMap("children")
 // .map("firstName")
@@ -51,10 +52,32 @@ Stream(da1)
   // log(e)
   return e.b>2;
 })
-.join(", ")
-);
+.join(", ");
 
+// log('blue',r0);
 
+let r1 = Stream(da1[0]).filter((a,b,c)=>{
+	log(a,b,c)
+})
+// log( r1.toMap() )
+
+let r2 = lodash.mapKeys({a:1,b:2,c:3},function(val,key){
+	/* if(key==='a'){
+		log(key,val);
+		return key;
+	} */
+	return key+val;
+})
+// log( r2 )
+
+let r3 = omit(da1[0],['i'],(val,key)=>{
+	clog(key,val)
+	if(key==='b'){
+		val++;
+	}
+	return key!=='f'
+});
+clog(r3);
 // clog(co(da1[0].f()) ) // echo Promise
 // clog(da1[0].f().next().value.then((data)=>{
 //   // clog(data)
