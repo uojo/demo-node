@@ -10,7 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "websocket": "supervisor -w app/ app/websocket/server.js",
     "reqserver": "supervisor -w app/ app/reqserver/index.js",
-    "streamjs": "supervisor -n exit -w app/ -x node app/streamjs/index.js"
+    "streamjs": "supervisor -n exit -w app/ -x node app/streamjs/index.js",
+    "lodash": "supervisor -n exit -w test/ -x node test/lodash.js"
   },
   "repository": {
     "type": "git",
