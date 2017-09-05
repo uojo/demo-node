@@ -11,7 +11,11 @@
     "websocket": "supervisor -w app/ app/websocket/server.js",
     "reqserver": "supervisor -w app/ app/reqserver/index.js",
     "streamjs": "supervisor -n exit -w app/ -x node app/streamjs/index.js",
-    "lodash": "supervisor -n exit -w test/ -x node test/lodash.js"
+    "lodash": "supervisor -n exit -w test/ -x node test/lodash.js",
+    "modules": "supervisor -n exit -w app/ -x node app/modules/index.js",
+    "serv": "supervisor -n exit -w app/ -x node app/reqserver/index.js",
+    "serv:proxy": "supervisor -n exit -w app/ -x node app/reqserver/proxy.js",
+    "serv:proxydest": "supervisor -n exit -w app/ -x node app/reqserver/proxy-dest.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +28,7 @@
   },
   "homepage": "",
   "devDependencies": {
+    "cfork": "1.6.1",
     "chalk": "2.0.1",
     "chokidar-cli": "1.2.0",
     "colors": "1.1.2",
@@ -35,7 +40,7 @@
     "Buffer": "0.0.0",
     "browser-sync": "2.18.12",
     "co": "4.6.0",
-    "express-http-proxy": "^1.0.6",
+    "express-http-proxy": "1.0.6",
     "lodash": "4.17.4",
     "object.omit": "2.0.1",
     "querystring": "0.2.0",
