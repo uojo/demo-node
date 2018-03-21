@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>socket.js</title>
+    <!-- <script src="http://cdn.jsdelivr.net/sockjs/1.0.1/sockjs.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.js"></script> -->
+    <!-- <script src="http://127.0.0.1:8080/stomp.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+</head>
+<!-- 
+CONNECT↵login:1↵passcode:2↵accept-version:1.1,1.0↵heart-beat:10000,10000↵↵
+CONNECT↵accept-version:1.1,1.0↵heart-beat:10000,10000↵↵
+
+CONNECTED↵login:1↵passcode:2↵accept-version:1.1,1.0↵heart-beat:10000,10000↵↵
+CONNECTED↵version:1.1↵heart-beat:0,0↵user-name:fengl
+ -->
+<body>
+    <noscript>
+        <h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being enabled. Please enable Javascript
+            and reload this page!</h2>
+    </noscript>
+    <div>
+        <div>
+            <button id="connect" onclick="connect();">Connect</button>
+            <button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
+        </div>
+        <div id="conversationDiv">
+            <br/>
+            <label>What is your name???</label>
+            <input type="text" id="name" />
+            <button id="sendName" onclick="sendName();">Send</button>
+            <p id="response"></p>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var stompClient = null;
+
+        document.getElementById('conversationDiv').style.visibility = 'hidden';
+
+        function setConnected(connected) {
+            console.log(connected)
+            document.getElementById('connect').disabled = connected;
+            document.getElementById('disconnect').disabled = !connected;
+            document.getElementById('conversationDiv').style.visibility = connected ? 'visible' : 'hidden';
+            document.getElementById('response').innerHTML = '';
+        }
+
+        function connect() {
+            var socket = new SockJS('http://127.0.0.1:8081/echo');
+            // console.log(socket)
+            stompClient = Stomp.over(socket);
+            // console.log(stompClient)
+            var header={
+                'login': 'mylogin',
+                'passcode': 'mypasscode',
+                // additional header
+                'client-id': 'my-client-id'
+            }
+            stompClient.connect(header, function (frame) {
+                console.log("client.connected",frame)
+                // setConnected(true);
+                // console.log('Connected: ' + frame);
+                // stompClient.subscribe('/topic/greetings', function (greeting) {
+                //     showGreeting(JSON.parse(greeting.body).content);
+                // });
+                // stompClient.subscribe('/queue/greetings', function (greeting) {
+                //     showGreeting(JSON.parse(greeting.body).content);
+                // });
+            });
+        }
+
+        function disconnect() {
+            stompClient.disconnect();
+            setConnected(false);
+            console.log("Disconnected");
+        }
+
+        function sendName() {
+            var name = document.getElementById('name').value;
+            stompClient.send("/app/hello", {}, JSON.stringify({
+                'name': name
+            }));
+        }
+
+        function showGreeting(message) {
+            var response = document.getElementById('response');
+            var p = document.createElement('p');
+            p.style.wordWrap = 'break-word';
+            p.appendChild(document.createTextNode(message));
+            response.appendChild(p);
+        }
+
+        connect();
+    </script>
+</body>
+
+</html>

@@ -7,15 +7,18 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "websocket": "supervisor -w app/ app/websocket/server.js",
-    "reqserver": "supervisor -w app/ app/reqserver/index.js",
-    "streamjs": "supervisor -n exit -w app/ -x node app/streamjs/index.js",
+    "execa": "supervisor -n exit -w feature/ feature/child_process/execa",
+    "execfile": "supervisor -w feature/ feature/child_process/execfile/index.js",
+    "stream": "supervisor -w feature/ feature/stream/index.js",
+    "socket": "supervisor -w feature/ feature/socket/dev.js",
+    "websocket": "supervisor -w feature/ feature/websocket/server.js",
+    "reqserver": "supervisor -w feature/ feature/reqserver/index.js",
+    "streamjs": "supervisor -n exit -w feature/ -x node feature/streamjs/index.js",
     "lodash": "supervisor -n exit -w test/ -x node test/lodash.js",
-    "modules": "supervisor -n exit -w app/ -x node app/modules/index.js",
-    "serv": "supervisor -n exit -w app/ -x node app/reqserver/index.js",
-    "serv:proxy": "supervisor -n exit -w app/ -x node app/reqserver/proxy.js",
-    "serv:proxydest": "supervisor -n exit -w app/ -x node app/reqserver/proxy-dest.js"
+    "modules": "supervisor -n exit -w feature/ -x node feature/modules/index.js",
+    "serv": "supervisor -n exit -w feature/ -x node feature/reqserver/index.js",
+    "serv:proxy": "supervisor -n exit -w feature/ -x node feature/reqserver/proxy.js",
+    "serv:proxydest": "supervisor -n exit -w feature/ -x node feature/reqserver/proxy-dest.js"
   },
   "repository": {
     "type": "git",
@@ -32,7 +35,9 @@
     "chalk": "2.0.1",
     "chokidar-cli": "1.2.0",
     "colors": "1.1.2",
+    "commander": "^2.15.0",
     "ejs": "^2.4.2",
+    "execa": "^0.10.0",
     "express": "^4.13.4",
     "jade": "^1.11.0"
   },
@@ -43,8 +48,11 @@
     "express-http-proxy": "1.0.6",
     "lodash": "4.17.4",
     "object.omit": "2.0.1",
+    "ora": "^2.0.0",
     "querystring": "0.2.0",
+    "sockjs": "^0.3.19",
     "streamjs": "1.6.4",
+    "supervisor": "^0.12.0",
     "winston": "2.3.1",
     "ws": "3.0.0"
   }

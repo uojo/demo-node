@@ -1,0 +1,38 @@
+stages:
+  # - t1
+  # - install_deps
+  # - build_test
+  # - build_production
+cache:
+  paths:
+    - node_modules/
+# hello
+t1:
+  stage: t1
+  only:
+    - develop
+    - master
+  script:
+    - node t1
+# 安装依赖
+install_deps:
+  stage: install_deps
+  only:
+    - develop
+    - master
+  script:
+    - npm install
+# 编译测试服务器
+build_test:
+  stage: build_test
+  only:
+    - develop
+  script:
+    - npm run test
+# 编译生产服务器
+build_production:
+  stage: build_production
+  only:
+    - master
+  script:
+    - npm run build
