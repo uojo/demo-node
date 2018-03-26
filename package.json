@@ -14,6 +14,8 @@
     "websocket": "supervisor -w feature/ feature/websocket/server.js",
     "reqserver": "supervisor -w feature/ feature/reqserver/index.js",
     "streamjs": "supervisor -n exit -w feature/ -x node feature/streamjs/index.js",
+    "test": "supervisor -n exit -w test/ -x node test/index.js",
+    "xstream": "supervisor -n exit -w feature/ -x node feature/xstream",
     "lodash": "supervisor -n exit -w test/ -x node test/lodash.js",
     "modules": "supervisor -n exit -w feature/ -x node feature/modules/index.js",
     "serv": "supervisor -n exit -w feature/ -x node feature/reqserver/index.js",
@@ -39,7 +41,8 @@
     "ejs": "^2.4.2",
     "execa": "^0.10.0",
     "express": "^4.13.4",
-    "jade": "^1.11.0"
+    "jade": "^1.11.0",
+    "supervisor": "0.12.0"
   },
   "dependencies": {
     "Buffer": "0.0.0",
@@ -53,7 +56,9 @@
     "sockjs": "^0.3.19",
     "streamjs": "1.6.4",
     "supervisor": "^0.12.0",
+    "uojo-kit": "0.1.3",
     "winston": "2.3.1",
-    "ws": "3.0.0"
+    "ws": "3.0.0",
+    "xstream": "10.9.0"
   }
 }
