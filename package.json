@@ -3,30 +3,26 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
-    "execa": "supervisor -n exit -w feature/ feature/child_process/execa",
-    "execfile": "supervisor -w feature/ feature/child_process/execfile/index.js",
-    "stream": "supervisor -w feature/ feature/stream/index.js",
-    "socket": "supervisor -w feature/ feature/socket/dev.js",
-    "websocket": "supervisor -w feature/ feature/websocket/server.js",
-    "reqserver": "supervisor -w feature/ feature/reqserver/index.js",
-    "streamjs": "supervisor -n exit -w feature/ -x node feature/streamjs/index.js",
+    "execa": "supervisor -n exit -w examples/ examples/child_process/execa",
+    "execfile": "supervisor -w examples/ examples/child_process/execfile/index.js",
+    "stream": "supervisor -w examples/ examples/stream/index.js",
+    "socket": "supervisor -w examples/ examples/socket/dev.js",
+    "websocket": "supervisor -w examples/ examples/websocket/server.js",
+    "reqserver": "supervisor -w examples/ examples/reqserver/index.js",
+    "streamjs": "supervisor -n exit -w examples/ -x node examples/streamjs/index.js",
+    "xstream": "supervisor -n exit -w examples/ -x node examples/xstream",
+    "modules": "supervisor -n exit -w examples/ -x node examples/modules/index.js",
+    "serv": "supervisor -n exit -w examples/ -x node examples/reqserver/index.js",
+    "serv:proxy": "supervisor -n exit -w examples/ -x node examples/reqserver/proxy.js",
+    "serv:proxydest": "supervisor -n exit -w examples/ -x node examples/reqserver/proxy-dest.js",
     "test": "supervisor -n exit -w test/ -x node test/index.js",
-    "xstream": "supervisor -n exit -w feature/ -x node feature/xstream",
-    "lodash": "supervisor -n exit -w test/ -x node test/lodash.js",
-    "modules": "supervisor -n exit -w feature/ -x node feature/modules/index.js",
-    "serv": "supervisor -n exit -w feature/ -x node feature/reqserver/index.js",
-    "serv:proxy": "supervisor -n exit -w feature/ -x node feature/reqserver/proxy.js",
-    "serv:proxydest": "supervisor -n exit -w feature/ -x node feature/reqserver/proxy-dest.js"
+    "lodash": "supervisor -n exit -w test/ -x node test/lodash.js"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/uojo/demo-node"
   },
-  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/uojo/demo-node/issues"
@@ -45,7 +41,6 @@
     "supervisor": "0.12.0"
   },
   "dependencies": {
-    "Buffer": "0.0.0",
     "browser-sync": "2.18.12",
     "co": "4.6.0",
     "express-http-proxy": "1.0.6",
@@ -55,10 +50,8 @@
     "querystring": "0.2.0",
     "sockjs": "^0.3.19",
     "streamjs": "1.6.4",
-    "supervisor": "^0.12.0",
     "uojo-kit": "0.1.3",
     "winston": "2.3.1",
-    "ws": "3.0.0",
-    "xstream": "10.9.0"
+    "ws": "3.0.0"
   }
 }
