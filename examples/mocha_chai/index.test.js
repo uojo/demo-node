@@ -19,7 +19,7 @@ describe('chai.assert',function(){
     assert.include('foobar', 'foo', 'string contains substring');
     assert.include({ foo: 'bar', hello: 'universe' }, { foo: 'bar' }, 'object contains property');
     assert.include({ foo: 'bar', hello: 'universe' }, {}, 'object contains property');
-
+    
   })
 
 })

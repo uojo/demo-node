@@ -22,7 +22,8 @@ module.exports = function (config) {
     // logLevel: config.LOG_INFO,
     autoWatch: true,
     // browsers: ['Chrome'],
-    browsers: ['PhantomJS'],
+    // browsers: ['PhantomJS'],
+    browsers: ['jsdom'],
     captureTimeout: 60000,
     singleRun: false
   });
