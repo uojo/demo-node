@@ -1,0 +1,24 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "a.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jseidelin/blanda.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jseidelin/blanda/issues"
+  },
+  "homepage": "https://github.com/jseidelin/blanda#readme",
+  "dependencies": {
+    "async": "^2.6.0",
+    "pngjs": "^3.3.3"
+  }
+}
