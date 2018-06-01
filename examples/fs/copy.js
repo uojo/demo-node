@@ -13,4 +13,4 @@ function copy(src,dst){
   });
 }
 
-// copy("src/js/1.js","temp/1/1.js");
+copy("files/a.txt","dist/a.txt");
