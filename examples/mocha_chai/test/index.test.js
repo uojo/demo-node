@@ -1,12 +1,12 @@
 // const mocha = require('mocha')
 // const {assert} = require('chai')
-var fn3 = require('./cjs/mod1');
-var {add} = require('ramda')
+var fn3 = require('../src/cjs/mod1');
+// var {add} = require('ramda')
 var {ajax} = require('jquery')
 // console.log(add)
 // console.log(assert)
 // var assert = chai.assert;
-// console.log(1,fn3)
+console.log(1,fn3)
 // console.log('jquery.ajax',ajax);
 
 describe('chai.assert',function(){

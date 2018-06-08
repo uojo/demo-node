@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.conf.js",
-    "mocha": "mocha index.js",
-    "karma:cjs": "karma start karma.cjs.conf.js",
-    "karma:webpack": "karma start karma.webpack.conf.js"
+    "build": "webpack --config build/webpack.conf.js",
+    "mocha": "mocha src/index.js",
+    "karma:cjs": "karma start build/karma.conf.cjs.js",
+    "karma:webpack": "karma start build/karma.conf.webpack.js"
   },
   "keywords": [],
   "author": "",
