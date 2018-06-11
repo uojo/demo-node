@@ -1,6 +1,6 @@
 _Store
 node_modules
-dist
+dist/
 .idea
 .DS_Store
 package-lock.json
