@@ -1,19 +1,19 @@
 module.exports = function (config) {
   config.set({
-    basePath: '../test',
+    basePath: '../',
     frameworks: ['mocha','chai','commonjs'],
     files: [
-      {pattern: '*.temp.js', included: false},
+      // {pattern: '*.temp.js', included: false},
       {pattern: 'node_modules/ramda/dist/ramda.js', included: true},
       {pattern: 'src/cjs/*.js', included: true},
       // {pattern: '*.js', included: true},
-      {pattern: '*.test.js', included: true},
+      {pattern: 'test/cjs/*.test.js', included: true},
     ],
     preprocessors:{
       // '**/*.js': ['commonjs'],
       'src/cjs/*.js': ['commonjs'],
       // 'index.js': ['commonjs'],
-      '*.test.js': ['commonjs']
+      'test/cjs/*.test.js': ['commonjs']
     },
     commonjsPreprocessor: {
       modulesRoot: 'node_modules'  

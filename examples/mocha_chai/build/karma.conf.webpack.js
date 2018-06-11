@@ -9,7 +9,8 @@ module.exports = function (config) {
       // {pattern: '*.test.js', included: true},
     ],
     preprocessors:{
-      '*.test.js': ['webpack']
+      '*.test.js': ['webpack'],
+      'utils/*.js': ['webpack']
     },
     webpack:{
       mode:'development'
