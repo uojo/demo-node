@@ -17,9 +17,6 @@
     "sinon": "^6.0.0"
   },
   "jest": {
-    "verbose": true,
-    "forceCoverageMatch": [
-      "test/*.t.js"
-    ]
+    "verbose": true
   }
 }
