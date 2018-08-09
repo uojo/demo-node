@@ -1,15 +1,15 @@
 {
-  "name": "jest-demo",
+  "name": "demo-livereload",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest test --watch"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^23.1.0"
+    "livereload": "^0.7.0"
   }
 }
