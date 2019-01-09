@@ -44,7 +44,7 @@
     "browser-sync": "2.18.12",
     "co": "4.6.0",
     "express-http-proxy": "1.0.6",
-    "lodash": "4.17.4",
+    "lodash": ">=4.17.5",
     "object.omit": "2.0.1",
     "ora": "^2.0.0",
     "querystring": "0.2.0",
