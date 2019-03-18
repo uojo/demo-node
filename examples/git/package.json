@@ -1,20 +1,41 @@
 {
   "name": "git",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "commit": "npx git-cz"
+    "commit": "npx git-cz",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "version": "standard-version",
+    "release": "release-it"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cz-conventional-changelog": "^2.1.0"
+    "conventional-changelog": "^3.0.6",
+    "conventional-changelog-cli": "^2.0.12",
+    "conventional-changelog-core": "^3.1.6",
+    "conventional-recommended-bump": "^4.0.4",
+    "cz-conventional-changelog": "^2.1.0",
+    "release-it": "^10.3.1",
+    "standard-version": "^5.0.2"
   },
   "config": {
     "commitizen": {
       "path": "./examples/git/node_modules/cz-conventional-changelog"
+    }
+  },
+  "release-it": {
+    "git": {
+      "push": false,
+      "requireCleanWorkingDir": false
+    },
+    "github": {
+      "release": false
+    },
+    "npm": {
+      "publish": false
     }
   }
 }
