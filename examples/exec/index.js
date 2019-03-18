@@ -16,9 +16,13 @@ console.log('TCL: stderr', stderr); */
 // timeout
 // execa('node',['timeout1']).stdout.pipe(process.stdout)
 
-const cmds = ['node a','node timeout1',]
+const cmds = ['node a','node timeout1',];
 
-;(async ()=>{
+const {stdout,stderr} = execa.shellSync(cmds.join(' && '))
+console.log('TCL: stdout', stdout);
+console.log('TCL: stderr', stderr);
+
+/* ;(async ()=>{
   for(let it of cmds){
     const {stdout,stderr} = await execa.shell(it)
     if(stderr){
@@ -28,4 +32,4 @@ const cmds = ['node a','node timeout1',]
       console.log('TCL: stdout', stdout);
     }
   }
-})()
+})() */
