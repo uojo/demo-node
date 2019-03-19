@@ -1,11 +1,11 @@
 {
   "name": "git",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "",
   "scripts": {
     "commit": "npx git-cz",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1",
     "version": "standard-version",
     "release": "release-it"
   },
