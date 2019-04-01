@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <title></title>
+</head>
+<body>
+  <h1>Browser</h1>
+  <h2>当页面中引用了 require.js 。</h2>
+  <!-- <script src="./bundle_umd.js"></script> -->
+  <script src="https://cdn.bootcss.com/require.js/2.3.6/require.js"></script>
+  <script src="./bundle.js"></script>
+<script>
+// console.log(ab(1));
+
+requirejs([''],function(f1){
+  console.log('f1: ', f1);
+
+})
+
+</script>
+  
+</body>
+</html>

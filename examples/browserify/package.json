@@ -1,0 +1,19 @@
+{
+  "name": "demo-browserify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "browserify index.js > bundle.js",
+    "build:umd": "browserify -s ab index.js > bundle_umd.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^16.2.3",
+    "express": "^4.16.4",
+    "serve-index": "^1.9.1"
+  }
+}
