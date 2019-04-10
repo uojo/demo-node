@@ -15,7 +15,7 @@
     "lint-staged": "^8.1.5"
   },
   "lint-staged": {
-    "*.js": "npm run success"
+    "*.js": "node"
   },
   "husky": {
     "hooks": {
