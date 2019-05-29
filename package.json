@@ -17,7 +17,8 @@
     "serv:proxy": "supervisor -n exit -w examples/ -x node examples/reqserver/proxy.js",
     "serv:proxydest": "supervisor -n exit -w examples/ -x node examples/reqserver/proxy-dest.js",
     "test": "supervisor -n exit -w test/ -x node test/index.js",
-    "lodash": "supervisor -n exit -w test/ -x node test/lodash.js"
+    "lodash": "supervisor -n exit -w test/ -x node test/lodash.js",
+    "debug:serv": "npx supervisor -n exit -w ./ -x node ./index.js"
   },
   "repository": {
     "type": "git",
