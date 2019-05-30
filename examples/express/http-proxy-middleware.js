@@ -24,8 +24,11 @@ app.use(proxy('/proxy/*',{
 	target: 'https://api.bootcdn.cn/libraries/',
 	// pathRewrite:{"/proxy/":""},
 	pathRewrite:function (path, req) { 
-		// console.log(path); // xxx.com/proxy/ab => /proxy/ab
-		return path.replace("/proxy/", '')+".json" 
+		console.log('path: ', path);
+    // console.log(path); // {local}/proxy/ab => {target}/ab.json
+    const rlt = `${path.replace("/proxy/", '')}.json`
+    console.log('rlt: ', rlt);
+		return rlt
 	},
 	changeOrigin: true,
 	secure: false,
