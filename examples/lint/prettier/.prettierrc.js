@@ -2,7 +2,7 @@ module.exports = {
   "printWidth": 80,
   "tabWidth": 2,
   // 使用tab替换空格
-  "tab": false,
+  "useTabs": false,
   // 分号
   "semi": true,
   "singleQuote": false,
@@ -14,7 +14,7 @@ module.exports = {
   "arrowParens": "avoid",
   "rangeStart": 0,
   "rangeEnd": Infinity,
-  "parser": "none",
+  "parser": "babel",
   "requirePragma": false,
   "proseWrap": "preserve",
   "htmlWhitespaceSensitivity": "css",
