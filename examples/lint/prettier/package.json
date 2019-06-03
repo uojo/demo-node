@@ -1,0 +1,26 @@
+{
+  "name": "demo-prettier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "p": "prettier files/**",
+    "p:fix": "prettier --write files/**",
+    "p:check": "prettier --check files/**",
+    "p:dcheck": "prettier --debug-check files/**",
+    "p:rule": "prettier --single-quote --trailing-comma es5 --write files/**",
+    "p:dc": "prettier --debug-check files/**",
+    "pc:dc": "prettier-check --check files/**",
+    "pc:ld": "prettier-check --list-different files/**"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prettier": "^1.17.1",
+    "prettier-check": "^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/parser": "^7.4.5"
+  }
+}
