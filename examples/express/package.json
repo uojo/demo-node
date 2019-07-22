@@ -11,5 +11,8 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "http-proxy-middleware": "^0.18.0"
+  },
+  "devDependencies": {
+    "cookie-parser": "^1.4.4"
   }
 }
