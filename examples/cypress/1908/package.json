@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "cy:open": "cypress open",
-    "cy:run": "cypress run"
+    "cy:debug": "cypress run --spec 'cypress/integration/examples/t1.spec.js'",
+    "cy:run": "cypress run",
+    "cy:b:run": "CYPRESS_RUN_BINARY=~/Downloads/Cypress.app/Contents/MacOS/Cypress cypress run",
+    "cy:b:run:debug": "CYPRESS_RUN_BINARY=~/Downloads/Cypress.app/Contents/MacOS/Cypress cypress run 'cypress/integration/examples/t1.spec.js'"
   },
   "keywords": [],
   "author": "",

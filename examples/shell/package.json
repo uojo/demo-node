@@ -1,0 +1,19 @@
+{
+  "name": "demo-shell",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "nodemon a.sh",
+    "debug": "nodemon",
+    "wd":"nodemon --exec '/bin/bash'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "nodemonConfig":{
+    "execMap":{
+      "sh":"/bin/sh"
+    }
+  }
+}
