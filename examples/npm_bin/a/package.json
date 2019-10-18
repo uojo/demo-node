@@ -1,10 +1,11 @@
 {
-  "name": "hello",
+  "name": "npm-bin-a",
   "version": "1.0.0",
   "bin": {
-    "hello": "hello"
+    "hello": "bin/index"
   },
   "scripts": {
-    "a1":"hello -a"
-  }
+    "echo": "./bin/index"
+  },
+  "dependencies": {}
 }

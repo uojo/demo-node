@@ -51,8 +51,8 @@
 # echo $greeting_2  $greeting_3
 
 # ? expr: syntax error
-# ab="runoob is a great site"
-# echo `expr index "$ab" io`
+# ab="runoob is a great site" is
+# echo `expr index "$ab" io` is
 
 # 字符长度
 # a="hello";echo ${#a};
