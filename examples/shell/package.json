@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "nodemon a.sh",
-    "debug": "nodemon",
-    "wd":"nodemon --exec '/bin/bash'"
+    "watch":"nodemon --exec '/bin/bash'"
   },
   "keywords": [],
   "author": "",

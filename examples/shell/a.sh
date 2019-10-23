@@ -1,5 +1,5 @@
 # 常规输出
-# echo 'hello' 123
+# echo 'a' 1 # a 1
 
 # 执行指令
 # git branch # 直接编写指令
@@ -159,3 +159,44 @@
 # echo -e "输入\n内容：$name" # 开启转义
 # echo "test" > b.sh # 输出内容到文件
 # echo `date` # 输出日期时间
+
+# cut
+# echo '[{"id":1,"name":"hello","username":"world","web_url":"https://gitlab.dxy.net/uojo"}]'|cut -d ',' -f3 # "username":"world"
+# echo "a,b,c"|cut -d ',' -f3 # c
+# echo "a:1,b:2,c:3"|cut -d ',' -f3|cut -d ':' -f2 # 3
+# a=$(echo '{"error":"404 Not Found"}'|grep -c "404 Not Found")
+# if [ $a != 0 ];then
+# echo $a
+# fi
+
+# 换行
+# echo $( ls \
+#  -a
+# )
+
+# 获取指令执行结果信息
+# a=$(git push)
+# b=$(echo $a|grep -c husky)
+# echo $b
+
+# if [ $a != 0 ];then
+# echo $a
+# fi
+
+# TARGET_BRANCH="release-2"
+# parse_target_branch=$(echo $TARGET_BRANCH | egrep -o "[a-z0-9]+-\d+" )
+# # if [ ${#parse_target_branch} == 1 ]; then # 判断字符串长度
+# if [ -n "$parse_target_branch" ]; then # 判断字符串长度不为 0
+# ab=$parse_target_branch
+# fi
+# echo $ab
+
+# 没有域的概念
+# if [ 1==1 ];then
+# ab=21
+# fi
+# echo $ab
+
+# 中止
+# exit
+# echo 12345
