@@ -199,4 +199,11 @@
 
 # 中止
 # exit
-# echo 12345
+# echo "无法输出"
+
+# sourceBranch=$(git branch | grep \* | cut -d ' ' -f2)
+# git checkout -b ${sourceBranch}_bk
+
+# 分支合并时是否存在冲突
+# echo $(git merge origin b1|egrep -c "^CONFLICT")
+# local_git_status=$(git status|egrep -c "^Untracked|^Changes") # 1 表示存在未暂存文件
