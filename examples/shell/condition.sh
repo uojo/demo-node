@@ -1,4 +1,13 @@
 # if
+
+# 没有域的概念
+# if [ 1==1 ];then
+# ab=21
+# fi
+# echo $ab
+
+
+
 # 单行
 if [ $(ps -ef | grep -c "ssh") -gt 1 ]; then echo "true"; fi
 
@@ -44,7 +53,7 @@ done
 # 读取键盘信息
 # while read FILM
 # do
-#     echo "是的！$FILM 是一个好网站"
+#  echo "是的！$FILM 是一个好网站"
 # done
 
 # until
@@ -62,3 +71,4 @@ case 1 in
 *) echo '*'
 ;;
 esac
+
