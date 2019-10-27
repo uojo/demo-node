@@ -17,3 +17,18 @@
 # ab=$parse_target_branch
 # fi
 # echo $ab
+
+# function branch_name_current {
+#   cur_branch=`git branch | grep "*"`
+#   echo ${cur_branch/* /} # 过滤掉单行中的 /* / 
+# }
+
+function create_branch(){
+  execMessage=$(git branch $1 2>&1)
+  if [ $? -eq 0 ]; then
+    echo "分支 $1 创建成功。"
+  else
+    echo $execMessage
+  fi
+}
+create_branch master
