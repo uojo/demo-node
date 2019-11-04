@@ -85,3 +85,14 @@ case 1 in
 *) echo 'switch default : *'
 ;;
 esac
+
+# 正则匹配
+# [[ 123 == [0-9]* ]]
+# echo $? # 0
+# 多行匹配
+# a="
+# ha 123
+# he 0
+# "
+# [[ $a == *ha*he* ]]
+# echo $? # 0
