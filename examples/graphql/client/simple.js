@@ -2,17 +2,13 @@ var {
   graphql,
   GraphQLSchema,
   buildSchema,
+  GraphQLList,
   GraphQLObjectType,
+  GraphQLID,
   GraphQLString,
 } = require('graphql');
 
-var schema1 = buildSchema(`
-  type Query {
-    hello: String
-  }
-`);
-
-var schema2 = new GraphQLSchema({
+var schema = new GraphQLSchema({
   query:new GraphQLObjectType({
     name:'rootQueryType', // 全局唯一
     fields:{
@@ -22,7 +18,7 @@ var schema2 = new GraphQLSchema({
           name: {type: GraphQLString, description: '演示参数'}
         },
         resolve(root,args,context,info){
-          return 'apple ' + args.name
+          return 'hello ' + args.name
         }
       }
     }
@@ -40,10 +36,12 @@ var schema2 = new GraphQLSchema({
   })
 })
 
-graphql(schema2, 'query { title(name:"bbc") }').then((response) => {
+// 查询操作
+graphql(schema, 'query { title(name:"bbc") }').then((response) => {
   console.log('TCL: response', response);
 });
 
-graphql(schema2, 'mutation { title }').then((response) => {
+// 修改操作
+graphql(schema, 'mutation { title }').then((response) => {
   console.log('TCL: response', response);
 });
