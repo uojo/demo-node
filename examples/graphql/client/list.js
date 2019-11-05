@@ -18,23 +18,25 @@ const ItemType = new GraphQLObjectType({
 
 const itemsFields = {
   type: new GraphQLList(ItemType),
-  args: {},
+  args: {
+    name: {type: GraphQLString}
+  },
   resolve (root, params, options) {
-    return [{id:1,title:"hello world",}] // 数据库查询
+    return [{id:1,title:"hello world" + params.name ,}] // 数据库查询
   }
 }
 
-let queryType = new GraphQLObjectType({
-    name: 'getAllList',
+let queryRootType = new GraphQLObjectType({
+    name: 'getList',
     fields: {
       items: itemsFields,
     }
 })
 
 const schema = new GraphQLSchema({
-  query: queryType
+  query: queryRootType
 })
 
-graphql(schema, 'query { items { id } }').then((response) => {
+graphql(schema, 'query { items(name:"uojo") { id } }').then((response) => {
   console.log('TCL: response', response);
 });
