@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer-core");
 const findChrome = require("carlo/lib/find_chrome");
 const path = require("path");
-const mainconf = require("./temp/conf");
+const mainconf = require("./temp/conf/main");
 
 const browserPage = async () => {
   const findChromePath = await findChrome({});
@@ -37,8 +37,9 @@ const series = function(arr, callback) {
 
 module.exports = {
   ...mainconf,
+  browserPage,
   addUrlPrefix: url => `${mainconf.urlPrefix}${url}`,
-  outputFilepath: ffname => path.resolve(__dirname, `./temp/${ffname}`),
+  outputFilepath: ffname => path.resolve(__dirname, `./temp/${ffname || ""}`),
   series,
   filterTag
 };

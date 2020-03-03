@@ -5,12 +5,12 @@ const findChrome = require("carlo/lib/find_chrome");
 const handleOutput = require("./output");
 const utils = require("./utils");
 
-// 读取页面地址
+// 读取页面地址，到 list 目录内遍历文件
 const fetchItemsUrl = () =>
   new Promise(resolve => {
-    fs.readdir("./temp/", (err, filenames) => {
+    fs.readdir(utils.outputFilepath("list"), (err, filenames) => {
       if (err) throw err;
-      // console.log("filenames", filenames);
+      console.log("filenames", filenames);
       let jsonFilenames = [];
       if (filenames.length) {
         jsonFilenames = filenames
@@ -20,19 +20,22 @@ const fetchItemsUrl = () =>
 
       const linksInfo = [];
       const readfilecontent = ffname => cb => {
-        fs.readJSON(`./temp/${ffname}`, (err0, response) => {
-          if (!err0) {
-            if (response && response.items) {
-              response.items.forEach(e => {
-                // 过滤已读取的链接
-                if (e[1] === 0) {
-                  linksInfo.push([ffname, e[0]]);
-                }
-              });
+        fs.readJSON(
+          utils.outputFilepath(`list/${ffname}`),
+          (err0, response) => {
+            if (!err0) {
+              if (response && response.items) {
+                response.items.forEach(e => {
+                  // 过滤已读取的链接
+                  if (e[1] === 0) {
+                    linksInfo.push([ffname, e[0]]);
+                  }
+                });
+              }
             }
+            cb();
           }
-          cb();
-        });
+        );
       };
 
       // 获取文件内容
@@ -67,7 +70,7 @@ const readPage = async (page, ffname, url) => {
   // 文件写入
   await handleOutput.saveItemData(wdata);
   // 设置解析状态
-  await handleOutput.saveItemState(ffname, url);
+  await handleOutput.saveItemState(utils.outputFilepath(`list/${ffname}`), url);
 
   return true;
 };
@@ -85,7 +88,7 @@ const openPage = (page, ffname, url) => async cb => {
 };
 
 const main = async () => {
-  const { browser, page } = utils.browserPage();
+  const { browser, page } = await utils.browserPage();
   // 业务流程
   const itemlinks = await fetchItemsUrl();
   console.log(`准备访问${itemlinks.length}个页面`);

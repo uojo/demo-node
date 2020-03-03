@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 
 const handleOutput = require("./output");
-const listLinks = require("./temp/listlinks");
+const listLinks = require("./temp/conf/list_user_input");
 const utils = require("./utils");
 
 const readPageLimit = 3;
@@ -36,38 +36,39 @@ const readList = async page => {
     const nextPageUrl = await page.$eval(nextPageSStr, el => el.href);
     // console.log("nextPageUrl", nextPageUrl);
     // 打开下一页
-    openListPage(page, nextPageUrl);
+    openListPage0(page, nextPageUrl);
   } else {
     console.log("没有下一页了");
   }
 };
 
-// 打开列表页
-const openListPage = async (page, url) => {
-  page.once("load", async () => {
-    console.log(`Page loaded => ${url}`);
-    // const td = page.$(".dataintable");
-    // const dom1 = await page.$(".tabContents");
-    readList(page);
+const openListPage0 = (page, url) =>
+  new Promise(resolve => {
+    page.once("load", async () => {
+      // console.log(`Page loaded => ${item.url}`);
+      readList(page);
+      ++listCount;
+      console.log(
+        `页面解析完成，总任务执行进度为${listCount}/${listLinks.length}`
+      );
+      resolve();
+    });
+
+    page.goto(url);
   });
 
-  await page.goto(url);
+// 打开列表页
+const openListPage = (page, item) => async cb => {
+  await openListPage0(page, item.url);
+  cb();
 };
 
 (async () => {
-  const { browser, page } = utils.browserPage();
-
+  const { browser, page } = await utils.browserPage();
+  const sq = listLinks.map(item => openListPage(page, item));
   // 建立串行任务
-  utils.series(
-    listLinks.map(e => cb => {
-      openListPage(page, e.url);
-      console.log(`[${e.name}]执行完毕`);
-      ++listCount;
-      cb();
-    }),
-    () => {
-      console.log(`执行完毕，执行任务进度为${listCount}/${listLinks.length}`);
-      browser.close();
-    }
-  );
+  utils.series(sq, () => {
+    console.log(`执行完毕，执行任务进度为${listCount}/${listLinks.length}`);
+    // browser.close();
+  });
 })();

@@ -1,5 +1,4 @@
 const fs = require("fs-extra");
-
 const moment = require("moment");
 const utils = require("./utils");
 
@@ -78,14 +77,42 @@ const parseItemDescs = descs => {
   return rlt;
 };
 
+const covertListFilename = title =>
+  new Promise(resolve => {
+    const dataPath = utils.outputFilepath("conf/list_filename.json");
+    fs.readJson(dataPath, (err, data) => {
+      if (err) console.error(err);
+      const targetFilename = data[title];
+      if (targetFilename) {
+        resolve();
+      } else {
+        // 新添加，并更新到文件中
+        const newFilename = moment(Date.now()).format("YY_MMDD_HHmmss");
+        const wdata = {
+          ...data,
+          // eg. 19_0101_101031
+          [title]: newFilename
+        };
+        fs.writeJSON(dataPath, wdata, err0 => {
+          if (!err0) {
+            resolve(newFilename);
+          }
+        });
+      }
+    });
+  });
+
 module.exports = {
   saveListData: async ({ title, items }) => {
+    console.log("开始保存列表数据");
     const wData = {
       title,
       items: items.map(link => clearLink(link))
     };
     // console.log("wData", wData);
-    const wfilepath = utils.outputFilepath(`${wData.title}.json`);
+
+    const wffname = await covertListFilename(wData.title);
+    const wfilepath = utils.outputFilepath(`list/${wffname}.json`);
 
     // 是否已经存在
     const exists = await fs.pathExists(wfilepath);
@@ -108,10 +135,10 @@ module.exports = {
       await writeJson(wfilepath, wData);
     }
   },
-  saveItemState: (ffname, link) =>
+  saveItemState: (ffpath, link) =>
     new Promise(async resolve => {
-      const filepath = utils.outputFilepath(ffname);
-      const fileContent = fs.readJsonSync(filepath);
+      console.log("开始保存页面访问状态=>", ffpath);
+      const fileContent = fs.readJsonSync(ffpath);
       const wData = {
         ...fileContent,
         items: fileContent.items.map(e => {
@@ -121,19 +148,20 @@ module.exports = {
           return e;
         })
       };
-      await writeJson(filepath, wData);
+      await writeJson(ffpath, wData);
       console.log("!!!页面访问状态变更成功。");
       resolve();
     }),
   saveItemData: data =>
     new Promise(async (resolve, reject) => {
+      console.log("开始保存详情数据");
       const descInfo = parseItemDescs(data.descs);
       if (!descInfo.SID) {
         console.log(`错误！sid获取失败`);
         reject();
         return;
       }
-      const wfilepath = utils.outputFilepath(`${descInfo.SID}.json`);
+      const wfilepath = utils.outputFilepath(`item/${descInfo.SID}.json`);
       const wData = {
         ...data,
         descInfo
