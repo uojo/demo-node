@@ -19,7 +19,8 @@
     "test": "supervisor -n exit -w test/ -x node test/index.js",
     "lodash": "supervisor -n exit -w test/ -x node test/lodash.js",
     "debug:serv": "npx supervisor -n exit -w ./ -x node ./index.js",
-    "debug:node": "nodemon utils/createItems/placeholder.js"
+    "debug:node": "nodemon utils/createItems/placeholder.js",
+    "efix": "eslint --fix ./test --ext .js "
   },
   "repository": {
     "type": "git",
@@ -37,10 +38,16 @@
     "colors": "1.1.2",
     "commander": "^2.15.0",
     "ejs": "^2.5.8",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-prettier": "^3.1.2",
     "execa": "^0.10.0",
     "express": "^4.13.4",
     "jade": "^1.11.0",
     "nodemon": "^1.19.1",
+    "prettier": "^1.19.1",
     "supervisor": "0.12.0"
   },
   "dependencies": {
