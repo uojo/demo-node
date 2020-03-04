@@ -5,6 +5,10 @@ const findChrome = require("carlo/lib/find_chrome");
 const handleOutput = require("./output");
 const utils = require("./utils");
 
+let loadTotalCount = 0;
+// 加载页面数
+let loadPageCount = 0;
+
 // 读取页面地址，到 list 目录内遍历文件
 const fetchItemsUrl = () =>
   new Promise(resolve => {
@@ -42,7 +46,7 @@ const fetchItemsUrl = () =>
       utils.series(
         jsonFilenames.map(ffname => readfilecontent(ffname)),
         () => {
-          console.log("linksInfo", linksInfo.length);
+          // console.log("linksInfo", linksInfo.length);
           resolve(linksInfo);
         }
       );
@@ -66,11 +70,16 @@ const readPage = async (page, ffname, url) => {
     video,
     descs
   };
-  console.log("!获取页面数据成功");
+  console.log("!解析页面成功");
   // 文件写入
-  await handleOutput.saveItemData(wdata);
+  const saveDescInfo = await handleOutput.saveItemData(wdata);
+  console.log("保存文件操作结束");
   // 设置解析状态
-  await handleOutput.saveItemState(utils.outputFilepath(`list/${ffname}`), url);
+  await handleOutput.saveItemState(
+    utils.outputFilepath(`list/${ffname}`),
+    url,
+    saveDescInfo
+  );
 
   return true;
 };
@@ -78,10 +87,15 @@ const readPage = async (page, ffname, url) => {
 const openPage = (page, ffname, url) => async cb => {
   page.once("load", async () => {
     console.log(`页面加载成功 => ${url}`);
-    // const td = page.$(".dataintable");
-    // const dom1 = await page.$(".tabContents");
     await readPage(page, ffname, url);
-    cb();
+    ++loadPageCount;
+    console.log(
+      `第${loadPageCount}页面解析完成，还需解析${loadTotalCount -
+        loadPageCount}`
+    );
+    setTimeout(() => {
+      cb();
+    }, 500);
   });
 
   await page.goto(`${utils.addUrlPrefix(url)}`);
@@ -91,7 +105,8 @@ const main = async () => {
   const { browser, page } = await utils.browserPage();
   // 业务流程
   const itemlinks = await fetchItemsUrl();
-  console.log(`准备访问${itemlinks.length}个页面`);
+  loadTotalCount = itemlinks.length;
+  console.log(`预计访问${loadTotalCount}个页面`);
   // console.log("main -> itemlinks", itemlinks);
   const q1 = itemlinks.map(e => {
     return openPage(page, e[0], e[1]);
