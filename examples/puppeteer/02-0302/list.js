@@ -4,6 +4,10 @@ const handleOutput = require("./output");
 const topicLinks = require("./temp/conf/list_user_input");
 const utils = require("./utils");
 
+/**
+ * 手动执行
+ * 功能：从手动维护的专题地址中分析出专题内的所有列表页中的详情地址。
+ */
 const readPageLimit = 0;
 let readPageNo = 0;
 // 加载专题数，一个专题页中包含多个页面
@@ -98,13 +102,11 @@ const loadTopicPage = (page, item) => async cb => {
 (async () => {
   const { browser, page } = await utils.browserPage();
   const sq = topicLinks
-    .filter(item => item[1])
-    .map(item => loadTopicPage(page, { title: item[0], url: item[1] }));
+    .filter(item => item.length === 3 && item[0] === 1 && item[1] && item[2])
+    .map(item => loadTopicPage(page, { title: item[1], url: item[2] }));
   // 建立串行任务
   utils.series(sq, () => {
-    console.log(
-      `所有专题任务执行完毕，完成比率${loadTopicCount}/${topicLinks.length}`
-    );
+    console.log(`所有专题任务执行完毕，完成比率${loadTopicCount}/${sq.length}`);
     browser.close();
   });
 })();

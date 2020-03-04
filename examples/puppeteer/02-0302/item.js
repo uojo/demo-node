@@ -1,15 +1,18 @@
 const fs = require("fs-extra");
 const path = require("path");
-const puppeteer = require("puppeteer-core");
-const findChrome = require("carlo/lib/find_chrome");
 const handleOutput = require("./output");
 const utils = require("./utils");
+
+/**
+ * 手动执行
+ * 功能：实现从专题目录内分析所有专题文件，汇总专题文件中未被分析的页面，进行逐个访问解析，解析后变更访问状态到专题文件中。最后将页面结果写到文件中。
+ */
 
 let loadTotalCount = 0;
 // 加载页面数
 let loadPageCount = 0;
 
-// 读取页面地址，到 list 目录内遍历文件
+// 在 list 目录内遍历文件，获取页面地址
 const fetchItemsUrl = () =>
   new Promise(resolve => {
     fs.readdir(utils.outputFilepath("list"), (err, filenames) => {
@@ -74,6 +77,7 @@ const readPage = async (page, ffname, url) => {
   // 文件写入
   const saveDescInfo = await handleOutput.saveItemData(wdata);
   console.log("保存文件操作结束");
+
   // 设置解析状态
   await handleOutput.saveItemState(
     utils.outputFilepath(`list/${ffname}`),
@@ -98,7 +102,10 @@ const openPage = (page, ffname, url) => async cb => {
     }, 500);
   });
 
-  await page.goto(`${utils.addUrlPrefix(url)}`);
+  page.goto(`${utils.addUrlPrefix(url)}`).catch(err => {
+    console.log("错误，页面打开失败: ");
+    cb();
+  });
 };
 
 const main = async () => {

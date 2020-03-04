@@ -166,7 +166,7 @@ module.exports = {
       await writeParseData(wfilepath, wData);
     }
   },
-  saveItemState: (ffpath, link, descInfo) =>
+  saveItemState: (ffpath, link, descInfo = {}) =>
     new Promise(async resolve => {
       console.log("开始保存页面访问状态=>", ffpath);
       const fileContent = fs.readJsonSync(ffpath);
@@ -188,8 +188,8 @@ module.exports = {
       console.log("开始保存操作");
       const descInfo = parseItemDescs(data.descs);
       if (!descInfo.SID) {
-        console.log(`错误！sid获取失败`);
-        reject();
+        console.log(`错误，sid获取失败`);
+        resolve();
         return;
       }
       const wfilepath = utils.outputFilepath(`item/${descInfo.SID}.json`);
