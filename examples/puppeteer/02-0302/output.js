@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const fs = require("fs-extra");
 const moment = require("moment");
 const utils = require("./utils");
@@ -18,6 +19,9 @@ const itemData = {
 
 const extraWriteData = data => {
   const now = Date.now();
+  if (data.totalCount) {
+    delete data.totalCount;
+  }
   return {
     modifytime: now,
     modifytimeStr: moment(now).format("YYYY-MM-DD HH:mm"),
