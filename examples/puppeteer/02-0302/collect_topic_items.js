@@ -74,6 +74,7 @@ const readItemFile = sid => cb => {
             cb();
           } else {
             console.log("错误，文件读取失败", readPath);
+            cb();
           }
         }
       );
@@ -134,7 +135,7 @@ const main = async () => {
     mainSids = mainSids.concat(sids);
   });
   // 去重
-  mainSids = Array.from(new Set(mainSids));
+  mainSids = Array.from(new Set(mainSids)).filter(e => e);
   console.log(`需要读取${mainSids.length}个item文件`);
 
   // 遍历读取item文件
@@ -154,7 +155,7 @@ const main = async () => {
             const { cover, video } = itemInfo;
             return [cover, video];
           }
-          console.log(`错误，item数据读取失败，sid=>${e[1]}`);
+          console.log(`错误，item数据读取失败，sid=>${e[1]}`, e);
         })
         .filter(e => e)
     };

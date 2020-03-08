@@ -102,7 +102,9 @@ const loadTopicPage = (page, item) => async cb => {
 (async () => {
   const { browser, page } = await utils.browserPage();
   const sq = topicLinks
-    .filter(item => item.length === 3 && item[0] === 1 && item[1] && item[2])
+    .filter(
+      item => item && item.length === 3 && item[0] === 1 && item[1] && item[2]
+    )
     .map(item => loadTopicPage(page, { title: item[1], url: item[2] }));
   // 建立串行任务
   utils.series(sq, () => {
