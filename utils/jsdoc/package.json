@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo 'start'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uojo/demo-node"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uojo/demo-node/issues"
+  },
+  "homepage": "https://github.com/uojo/demo-node",
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}
